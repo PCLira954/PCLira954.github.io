@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Calculo do Cartão de Crédito</title>
+  </head>
+
+  <body>
+    <h1> Calculo do Cartão de Crédito </h1>
+    
+    <p> Este site irá ajudar a calcular a fatura do seu <b>cartão de crédito</b> </p>
+
+    <p> ### PLANO DA <b> FATURA 1 ###</b></p>
+
+    <form id="formulario" action="#">
+      
+      <div>
+        <label for="">Fatura do Cartão(R$)</label>
+        <input id="cx-fatura1" type="number" placeholder="R$">
+      </div>
+
+
+      <div>
+        <label for="">Valor que irá pagar(R$)</label>
+        <input id="cx-irapagar1" type="number" placeholder="R$">
+      </div>
+
+
+      <div>
+        <label for="">Durante quanto tempo não irá pagar</label>
+        <input id="cx-tempo1" type="number" placeholder="Tempo em meses">
+      </div>
+
+
+      <div>
+        <label for="">Informe a taxa do cartão</label>
+        <input id="cx-taxa1" type="number" placeholder="Taxa em %">
+      </div>
+      
+      <p> ### PLANO DA <b> FATURA 2 ###</b></p>
+
+      <div>
+        <label for="">Fatura do Cartão(R$)</label>
+        <input id="cx-fatura2" type="number" placeholder="R$">
+      </div>
+
+
+      <div>
+        <label for="">Valor que irá pagar(R$)</label>
+        <input id="cx-irapagar2" type="number" placeholder="R$">
+      </div>
+
+
+      <div>
+        <label for="">Durante quanto tempo não irá pagar</label>
+        <input id="cx-tempo2" type="number" placeholder="Tempo em meses">
+      </div>
+
+
+      <div>
+        <label for="">Informe a taxa do cartão</label>
+        <input id="cx-taxa2" type="number" placeholder="Taxa em %">
+      </div>
+
+      <div id="botoes">
+        <input type="reset" value="Limpar">
+        <input id="btn-calcular" onclick="clique_botao_calcular()" type="submit" value="Calcular Fatura do Cartao">
+      </div>
+
+    </form>
+
+    <script>
+
+function clique_botao_calcular(){
+      const cx_fatura1 = document.getElementById('cx-fatura1')
+      const cx_irapagar1 = document.getElementById('cx-irapagar1')
+      const cx_tempo1 = document.getElementById('cx-tempo1')
+      const cx_taxa1 = document.getElementById('cx-taxa1')
+      const cx_fatura2 = document.getElementById('cx-fatura2')
+      const cx_irapagar2 = document.getElementById('cx-irapagar2')
+      const cx_tempo2 = document.getElementById('cx-tempo2')
+      const cx_taxa2 = document.getElementById('cx-taxa2')
+      
+      const fatura_1 = Number(cx_fatura1.value)
+      const irapaga1 = Number(cx_irapagar1.value)
+      const tempo_1 = Number(cx_tempo1.value)
+      const taxa_1 = Number(cx_taxa1.value)
+      const fatura_2 = Number(cx_fatura2.value)
+      const irapaga2 = Number(cx_irapagar2.value)
+      const tempo_2 = Number(cx_tempo2.value)
+      const taxa_2 = Number(cx_taxa2.value)
+      
+
+      // Calculo do plano 1 
+      const valor_minimo1 = fatura_1/(20/100)
+      const rotativo1 = (fatura_1 - irapaga1)
+      const montante_1 = rotativo1 * ((1 + (taxa_1/100))**tempo_1)
+
+      // Calculo do plano 1 
+      const valor_minimo2 = fatura_2/(20/100)
+      const rotativo2 = (fatura_2 - irapaga2)
+      const montante_2 = rotativo2 * ((1 + (taxa_2/100))**tempo_2)
+
+
+      // Resultado
+      const resultado = `**** FATURA 1 *****
+        \n> A taxa do cartao da  fatura 1 ao final dos ${tempo_1} meses sera de R$${montante_1.toFixed(2)}
+        \n **** FATURA 2 ****
+        \n> A taxa do cartao da  fatura 2 ao final dos  ${tempo_2} meses sera de R$${montante_2.toFixed(2)}`
+
+      alert(resultado)
+}
+    </script>
+  </body>
+</html>
